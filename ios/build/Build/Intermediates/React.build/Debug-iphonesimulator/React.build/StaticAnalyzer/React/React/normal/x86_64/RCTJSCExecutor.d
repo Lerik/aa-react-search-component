@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Executors/RCTJSCExecutor.mm \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Executors/RCTJSCExecutor.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTJavaScriptExecutor.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/ios/build/Build/Products/Debug-iphonesimulator/include/cxxreact/JSBundleType.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Modules/JSCSamplingProfiler.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Modules/RCTDevMenu.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Executors/RCTJSCErrorHandling.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Profiler/RCTJSCProfiler.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/jacobramirez/Repositories/aa-react-search-component/node_modules/react-native/React/Base/RCTUtils.h

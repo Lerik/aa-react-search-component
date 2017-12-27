@@ -1,0 +1,2 @@
+export const UPDATE_NAVBAR_TITLE = 'app/NavBar/UPDATE_NAVBAR_TITLE';
+export const UPDATE_CURRENT_ROUTE = 'app/NavBar/UPDATE_CURRENT_ROUTE';

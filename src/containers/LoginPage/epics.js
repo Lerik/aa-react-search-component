@@ -21,7 +21,6 @@ import { authenticationService } from '../../services';
 import * as storage from '../../services/helpers/storageHelper';
 import { authenticateAction, authenticatedAction, updatedUserNameAction,
   verificationCodeHasBeenSent, loginMessageErrorAction, createUser, loginAction } from './actions';
-import { getWishListsAction } from '../WishListPage/actions';
 
 export function checkLoginStatus(action$) {
   return action$.ofType(CHECK_LOGIN_STATUS_ACTION)
@@ -85,15 +84,7 @@ export function authenticated(action$) {
     .mergeMap((action) => {
       storage.setDataFromAsyncStorage('user', JSON.stringify(action.user));
       if (shouldWeSendUserToWishList(action)) {
-        return [getWishListsAction({
-          wishListQuery: {
-            query: {
-              createdBy: action.user._id, // eslint-disable-line
-              $sort: { updatedAt: -1 },
-            },
-          },
-          goToAction: 'WishList',
-        })];
+        return [null];
       }
       if (shouldWeSendUserToLogin(action)) {
         return [loginAction({
@@ -184,15 +175,7 @@ export function updatedUserName(action$) {
       storage.setDataFromAsyncStorage('user', JSON.stringify(action.user));
       Keyboard.dismiss();
 
-      return [getWishListsAction({
-        wishListQuery: {
-          query: {
-            createdBy: action.user._id, // eslint-disable-line
-            $sort: { updatedAt: -1 },
-          },
-        },
-        goToAction: action.goToAction,
-      })];
+      return [null];
     });
 }
 

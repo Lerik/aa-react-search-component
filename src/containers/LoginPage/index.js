@@ -30,7 +30,6 @@ import {
 import CommonStyles from '../../styles/CommonStyles';
 import config from '../../../config.json';
 
-const signUpImg = require('../../../img/sign-up-with-phonenumber.png');
 const termsAndConditionsUrl = config.termsAndConditionsUrl;
 const screenWidth = Dimensions.get('window').width;
 
@@ -143,7 +142,7 @@ export class LoginPage extends React.Component {
                   <TextInput
                     accessible
                     accessibilityLabel="PhoneNumber"
-                    placeholder={'Phone Number'}
+                    placeholder={'Search'}
                     placeholderTextColor={'#AAA'}
                     ref={(textInput) => { this.phoneNumberInput = textInput; }}
                     style={styles.textInput}
@@ -153,36 +152,6 @@ export class LoginPage extends React.Component {
                     onSubmitEditing={this.onSubmitEditing}
                     onChangeText={this.onChangeText}
                   />
-                </View>
-                <TouchableHighlight
-                  accessible
-                  accessibilityLabel="Continue"
-                  onPress={this.sendVerificationCode}
-                  underlayColor={INPUT_BACKGROUNDCOLOR}
-                  style={CommonStyles.buttonContainer}
-                >
-                  <View>
-                    <Text
-                      style={styles.buttonText}
-                    >
-                      Continue
-                  </Text>
-                  </View>
-                </TouchableHighlight>
-
-                <View style={styles.termsConditionsContainer}>
-                  <TouchableHighlight
-                    accessible
-                    accessibilityLabel="TermsAndConditions"
-                    onPress={this.openTermsAndConditions}
-                    underlayColor={'transparent'}
-                  >
-                    <View>
-                      <Text style={styles.termsConditionsText}>
-                        By signing up, you agree to our <Text style={styles.boldAndUnderlineText}> terms & conditions </Text>
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
                 </View>
                 {loading === true ? <ActivityIndicator
                   animating

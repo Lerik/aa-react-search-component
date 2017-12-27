@@ -7,19 +7,7 @@ import { bindActionCreators } from 'redux';
 import StatusBarSizeIOS from 'react-native-status-bar-size';
 import App from './App';
 import Login from './LoginPage';
-import AddName from './AddNamePage';
 import NavBar from './NavBar';
-import Notifications from './Notifications';
-import Friends from './Friends';
-import Settings from './Settings';
-import Footer from './Footer';
-import AddWishList from './AddWishList';
-import WishListDetail from './WishListDetail';
-import FriendWishListDetail from './FriendWishListDetail';
-import AddNewGiftForm from './AddNewGiftFormPage';
-import VerifySmsCode from './VerifySmsCodePage';
-import AddFriends from './AddFriends';
-import FriendWishList from './FriendWishList';
 import {
   BLUE_GRAY_BACKGROUND,
   Gray,
@@ -27,14 +15,11 @@ import {
  } from '../styles/color-constants';
 
 import * as navbarActions from './NavBar/actions';
-import * as footerActions from './Footer/actions';
-import WishList from './WishListPage';
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       ...navbarActions,
-      ...footerActions,
     }, dispatch),
   };
 }
@@ -98,7 +83,6 @@ class Routes extends React.Component {
         states.pop();
       }
       this.updateRoute();
-      this.updateFooter();
       return defaultReducer(state, action);
     };
   }
@@ -112,18 +96,6 @@ class Routes extends React.Component {
         this.props.actions.updateNavBarTitle('');
         this.props.actions.updateCurrentRoute('');
       }, 0);
-    }
-  }
-  updateFooter() {
-    if (states.length) {
-      const lastState = states[states.length - 1];
-      if (SHOW_FOOTER[lastState]) {
-        this.props.actions.showFooter();
-      } else {
-        this.props.actions.hideFooter();
-      }
-    } else {
-      this.props.actions.hideFooter();
     }
   }
   render() {
@@ -140,7 +112,7 @@ class Routes extends React.Component {
         <Scene
           key="Footer"
           panHandlers={null}
-          component={Footer}
+          component={null}
           style={styles}
         >
           <Scene
@@ -161,88 +133,6 @@ class Routes extends React.Component {
               component={Login}
               type={ActionConst.RESET}
               hideNavBar
-            />
-            <Scene
-              key="AddName"
-              component={AddName}
-              type={ActionConst.RESET}
-              hideNavBar
-            />
-            <Scene
-              key="WishList"
-              component={WishList}
-              type={ActionConst.RESET}
-              hideNavBar={false}
-              sceneStyle={{ backgroundColor: WHITE }}
-            />
-            <Scene
-              key="AddWishList"
-              panHandlers={null}
-              component={AddWishList}
-              type={ActionConst.PUSH}
-              hideNavBar
-            />
-            <Scene
-              key="WishListDetail"
-              panHandlers={null}
-              component={WishListDetail}
-              type={ActionConst.PUSH}
-              hideNavBar
-            />
-            <Scene
-              key="FriendWishListDetail"
-              panHandlers={null}
-              component={FriendWishListDetail}
-              type={ActionConst.PUSH}
-              hideNavBar
-            />
-            <Scene
-              key="AddNewGiftForm"
-              component={AddNewGiftForm}
-              type={ActionConst.PUSH}
-              hideNavBar
-            />
-            <Scene
-              key="Notifications"
-              component={Notifications}
-              type={ActionConst.PUSH}
-              hideNavBar={false}
-              sceneStyle={{ backgroundColor: BLUE_GRAY_BACKGROUND }}
-            />
-            <Scene
-              key="Friends"
-              component={Friends}
-              type={ActionConst.PUSH}
-              hideNavBar={false}
-              sceneStyle={{ backgroundColor: BLUE_GRAY_BACKGROUND }}
-            />
-            <Scene
-              key="Settings"
-              component={Settings}
-              type={ActionConst.PUSH}
-              hideNavBar
-              sceneStyle={{ backgroundColor: BLUE_GRAY_BACKGROUND }}
-            />
-            <Scene
-              key="VerifySmsCode"
-              panHandlers={null}
-              component={VerifySmsCode}
-              type={ActionConst.PUSH}
-              hideNavBar
-            />
-            <Scene
-              key="AddFriends"
-              component={AddFriends}
-              type={ActionConst.PUSH}
-              hideNavBar={false}
-              sceneStyle={{ backgroundColor: WHITE }}
-            />
-            <Scene
-              key="FriendWishList"
-              component={FriendWishList}
-              type={ActionConst.PUSH}
-              hideNavBar
-              sceneStyle={{ backgroundColor: WHITE }}
             />
           </Scene>
         </Scene>

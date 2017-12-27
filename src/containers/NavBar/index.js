@@ -16,12 +16,10 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { WHITE, DUSTY_ORANGE, BLACK } from '../../styles/color-constants';
 import * as navbarActions from './actions';
-import * as wishlistActions from '../WishListPage/actions';
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      ...wishlistActions,
       ...navbarActions,
     }, dispatch),
   };
@@ -29,13 +27,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   navbarStore: (state) => state.NavBarReducer.toJS(),
-  wishListStore: (state) => state.WishListReducer.toJS(),
 });
-
-
-const GIFTHUB_LOGO = require('../../../img/gifthubLogo.png');
-const backIcon = require('../../../img/Chevron_3x.png');
-const searchIcon = require('../../../img/search_3x.png');
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -90,60 +82,9 @@ export class NavBarPage extends React.Component {
     this.goToFriendsScreen = this.goToFriendsScreen.bind(this);
   }
   getLeftIcon() {
-    const { route } = this.props.navbarStore;
-    if (route === 'AddFriends') {
-      return (
-        <TouchableHighlight
-          accessible
-          accessibilityLabel="GoBack"
-          underlayColor={WHITE}
-          onPress={this.goToFriendsScreen}
-          style={styles.backIcon}
-        >
-          <View>
-            <Image
-              style={styles.backIconImage}
-              source={backIcon}
-            />
-          </View>
-        </TouchableHighlight>
-      );
-    }
     return null;
   }
   getRightIcon() {
-    const { route } = this.props.navbarStore;
-
-    if (this.props.navbarStore.route === 'WishList' &&
-      this.props.wishListStore.wishLists.length > 0) {
-      return (<TouchableHighlight
-        underlayColor={'transparent'}
-        style={styles.rightItem}
-        onPress={this.goToAddWishList}
-        accessible
-        accessibilityLabel="Add List"
-      >
-        <Text style={styles.rightItemText}>Add List</Text>
-      </TouchableHighlight>);
-    }
-
-    if (route === 'AddFriends') {
-      return (
-        <TouchableHighlight
-          accessible
-          accessibilityLabel="Search"
-          underlayColor={WHITE}
-          style={styles.backIcon}
-        >
-          <View>
-            <Image
-              style={styles.searchIconImage}
-              source={searchIcon}
-            />
-          </View>
-        </TouchableHighlight>
-      );
-    }
     return null;
   }
   getHeaderTextColor() {
@@ -184,8 +125,6 @@ export class NavBarPage extends React.Component {
     };
   }
   goToAddWishList() {
-    this.props.actions.selectWishListAction({});
-    Actions.AddWishList();
   }
   goToNotifications() {
     if (this.props.navbarStore.route !== 'Notifications') {
@@ -206,7 +145,7 @@ export class NavBarPage extends React.Component {
           style={[styles.headerTitle, { color: this.getHeaderTextColor() }]}
         >{this.props.navbarStore.title}</Text>) :
         (<Image
-          source={GIFTHUB_LOGO}
+          source={null}
         />)}
 
       </View>
@@ -220,7 +159,6 @@ export class NavBarPage extends React.Component {
 
 NavBarPage.propTypes = {
   navbarStore: React.PropTypes.any.isRequired,
-  wishListStore: React.PropTypes.any.isRequired,
   actions: React.PropTypes.any.isRequired,
 };
 

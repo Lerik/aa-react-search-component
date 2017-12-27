@@ -1,0 +1,152 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "1.109.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "7ff3e92c-993a-4ef9-8095-4780301a83bb"
+
+default_platform :ios
+
+platform :ios do
+  lane :develop do
+    increment_build_number(
+      xcodeproj: "./ios/GiftHub.xcodeproj",
+      build_number: ENV["BUILDKITE_BUILD_NUMBER"]
+    )
+    cert(
+      development: true
+    )
+
+    sigh(
+      development: true
+    )
+
+    gym(
+      scheme: "GiftHub",
+      project: "./ios/GiftHub.xcodeproj",
+      output_name: "GiftHub-mobile-develop",
+      output_directory: "./ios/ipa",
+      xcargs: DEVELOPMENT_TEAM ="-destination 'generic/platform=iOS'",
+      export_method: "development"
+    )
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester"
+    )
+  end
+
+  lane :staging do
+    app_identifier "com.acklenavenue.gifthub-staging"
+    increment_build_number(
+      xcodeproj: "./ios/GiftHub.xcodeproj",
+      build_number: ENV["BUILDKITE_BUILD_NUMBER"]
+    )
+
+    update_app_identifier(
+      xcodeproj: "./ios/GiftHub.xcodeproj",
+      plist_path: "GiftHub/Info.plist"
+    )
+
+    cert(
+      development: true
+    )
+
+    sigh(
+      development: true
+    )
+
+    gym(
+      scheme: "GiftHub",
+      project: "./ios/GiftHub.xcodeproj",
+      output_name: "GiftHub-mobile-staging",
+      output_directory: "./ios/ipa",
+      xcargs: DEVELOPMENT_TEAM ="-destination 'generic/platform=iOS'",
+      export_method: "development"
+    )
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester-staging"
+    )
+  end
+
+  lane :production do
+    app_identifier "com.acklenavenue.gifthub"
+    increment_build_number(
+      xcodeproj: "./ios/GiftHub.xcodeproj",
+      build_number: ENV["BUILDKITE_BUILD_NUMBER"]
+    )
+
+    update_app_identifier(
+      xcodeproj: "./ios/GiftHub.xcodeproj",
+      plist_path: "GiftHub/Info.plist"
+    )
+
+    cert()
+
+    sigh()
+
+    gym(
+      scheme: "GiftHub",
+      project: "./ios/GiftHub.xcodeproj",
+      output_name: "GiftHub-mobile-production",
+      output_directory: "./ios/ipa",
+      xcargs: DEVELOPMENT_TEAM ="-destination 'generic/platform=iOS'"
+    )
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester-production"
+    )
+
+    pilot(
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
+
+platform :android do
+  lane :develop do
+    gradle(
+  	task: "assembleDevelop",
+  	project_dir: "./android"
+  	)
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester"
+    )
+  end
+  lane :staging do
+    gradle(
+    task: "assembleDevelop",
+    project_dir: "./android"
+    )
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester-staging"
+    )
+  end
+  lane :production do
+    gradle(
+    task: "assembleProd",
+    project_dir: "./android"
+    )
+
+    crashlytics(
+      api_token: ENV["CA_API_TOKEN"],
+      build_secret: ENV["CA_BUILD_SECRET"],
+      groups: "gifthub-tester-production"
+    )
+  end
+end

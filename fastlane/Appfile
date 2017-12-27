@@ -1,0 +1,8 @@
+app_identifier "com.acklenavenue.gifthub" # The bundle identifier of your app
+for_platform :ios do
+  for_lane :staging do
+  app_identifier "com.acklenavenue.gifthub-staging"
+  end
+end
+apple_id "devops@acklenavenue.com" # Your Apple email address
+team_id "AVHMB383Q7"  # Developer Portal Team ID

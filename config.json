@@ -1,0 +1,6 @@
+{
+  "Backend": "http://gifthub-backend-dev.us-east-1.elasticbeanstalk.com",
+  "S3Bucket": "https://s3.amazonaws.com/gifthub-images-bucket/",
+  "termsAndConditionsUrl": "http://gifthubapp.com/gifthub-privacy-policy.html",
+  "testMode": "false"
+}

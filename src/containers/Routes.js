@@ -10,7 +10,7 @@ import Login from './LoginPage';
 import NavBar from './NavBar';
 import {
   BLUE_GRAY_BACKGROUND,
-  Gray,
+  Purple,
   WHITE,
  } from '../styles/color-constants';
 
@@ -106,7 +106,7 @@ class Routes extends React.Component {
     return (
       <RouterWithRedux
         createReducer={this.createReducer}
-        sceneStyle={(Platform.OS === 'ios') ? { paddingTop: StatusBarSizeIOS.currentHeight, backgroundColor: Gray } : null}
+        sceneStyle={(Platform.OS === 'ios') ? { paddingTop: StatusBarSizeIOS.currentHeight, backgroundColor: '#FFFFFF' } : null}
       >
 
         <Scene

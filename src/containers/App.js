@@ -43,7 +43,9 @@ export class App extends React.Component {
   }
 
   componentWillMount() {
-    this.props.actions.checkLoginStatusAction({});
+    setTimeout(() => {
+      this.props.actions.checkLoginStatusAction({});
+    }, 1500);
   }
   componentWillReceiveProps(nextProps) {
   }

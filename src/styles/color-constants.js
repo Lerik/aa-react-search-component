@@ -20,5 +20,6 @@ module.exports = {
   TOAST_TEXT_COLOR: '#78B597',
   HEADER_ACCORDION_BACKGROUND_COLOR: '#F9F8EE',
 
-  Gray: '#69686A',
+  Purple: '#3c3643',
+  Green: '#72c02c',
 };

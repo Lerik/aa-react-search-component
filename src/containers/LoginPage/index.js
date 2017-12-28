@@ -30,7 +30,8 @@ import {
 import CommonStyles from '../../styles/CommonStyles';
 import config from '../../../config.json';
 
-const termsAndConditionsUrl = config.termsAndConditionsUrl;
+import SearchText from '../../components/SearchText';
+
 const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   inputsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 25,
+    marginTop: 75,
   },
   textInput: {
     width: screenWidth - 70,
@@ -118,6 +119,57 @@ function mapDispatchToProps(dispatch) {
 export class LoginPage extends React.Component {
   constructor() {
     super();
+    this.state = {
+      source: [
+        23,
+        24,
+        17,
+        10,
+        67,
+        103,
+        156,
+        10,
+        69,
+      ],
+      sourceTwo: [
+        {
+          a: 'Alabama',
+          b: 23
+        },
+        {
+          a: 'Alaska',
+          b: 24
+        },
+        {
+          a: 'Arizona',
+          b: 17
+        },
+        {
+          a: 'Arkansas',
+          b: 10
+        },
+        {
+          a: 'California',
+          b: 67
+        },
+        {
+          a: 'Colorado',
+          b: 103
+        },
+        {
+          a: 'Connecticut',
+          b: 156
+        },
+        {
+          a: 'Arizona',
+          b: 10
+        },
+        {
+          a: 'Amazonas',
+          b: 69
+        },
+      ],
+    };
   }
 
   componentWillMount() {
@@ -130,6 +182,10 @@ export class LoginPage extends React.Component {
     Keyboard.dismiss();
   }
 
+  onSearch(value) {
+    console.log('Searched value', value);
+  }
+
   render() {
     const { loading } = this.props.loginStore;
     return (
@@ -139,18 +195,12 @@ export class LoginPage extends React.Component {
             <View>
               <View style={styles.controlsContainer}>
                 <View style={styles.inputsContainer}>
-                  <TextInput
-                    accessible
-                    accessibilityLabel="PhoneNumber"
-                    placeholder={'Search'}
-                    placeholderTextColor={'#AAA'}
-                    ref={(textInput) => { this.phoneNumberInput = textInput; }}
-                    style={styles.textInput}
-                    keyboardType={'phone-pad'}
-                    underlineColorAndroid={'transparent'}
-                    blurOnSubmit
-                    onSubmitEditing={this.onSubmitEditing}
-                    onChangeText={this.onChangeText}
+                  <SearchText
+                    accessibilityLabel="Search-Text"
+                    placeHolder={'Search'}
+                    source={this.state.source}
+                    attributeToSearch={'b'}
+                    onSearchedValue={this.onSearch}
                   />
                 </View>
                 {loading === true ? <ActivityIndicator

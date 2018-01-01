@@ -31,6 +31,7 @@ import CommonStyles from '../../styles/CommonStyles';
 import config from '../../../config.json';
 
 import SearchText from '../../components/SearchText';
+import { states, amounts, europe } from './sources';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -56,7 +57,8 @@ const styles = StyleSheet.create({
   inputsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 75,
+    marginTop: 10,
+    marginBottom: 75,
   },
   textInput: {
     width: screenWidth - 70,
@@ -120,16 +122,8 @@ export class LoginPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      source: [
-        23,
-        24,
-        17,
-        10,
-        67,
-        103,
-        156,
-        10,
-        69,
+      sourceString: [
+        '',
       ],
       sourceTwo: [
         {
@@ -196,18 +190,38 @@ export class LoginPage extends React.Component {
               <View style={styles.controlsContainer}>
                 <View style={styles.inputsContainer}>
                   <SearchText
-                    accessibilityLabel="Search-Text"
-                    placeHolder={'Search'}
-                    source={this.state.source}
-                    attributeToSearch={'b'}
+                    accessibilityLabel="Search-State"
+                    placeHolder={'Search a US State'}
+                    source={states}
                     onSearchedValue={this.onSearch}
                   />
                 </View>
-                {loading === true ? <ActivityIndicator
-                  animating
-                  style={[styles.centering, styles.heightActivityIndicator]}
-                  size="large"
-                /> : <View></View>}
+
+                <View style={styles.inputsContainer}>
+                  <SearchText
+                    accessibilityLabel="Search-Amount"
+                    placeHolder={'Search an Amount'}
+                    source={amounts}
+                    onSearchedValue={this.onSearch}
+                    theme={'warning'}
+                  />
+                </View>
+
+                <View style={styles.inputsContainer}>
+                  <SearchText
+                    accessibilityLabel="Search-European-Country"
+                    placeHolder={'Search an European Country'}
+                    source={europe}
+                    attributeToSearch={'country'}
+                    onSearchedValue={this.onSearch}
+                    textColor={'#BD650D'}
+                    placeHolderColor={'#C3BCB5'}
+                    resultTextColor={'#FFFFFF'}
+                    searchBoxColor={'#CA2760'}
+                    inputBackgroundColor={'#F8F5D8'}
+                    resultsBoxBackgroundColor={'#F3DE0F'}
+                  />
+                </View>
               </View>
             </View>
           </View>

@@ -106,7 +106,7 @@ class Routes extends React.Component {
     return (
       <RouterWithRedux
         createReducer={this.createReducer}
-        sceneStyle={(Platform.OS === 'ios') ? { paddingTop: StatusBarSizeIOS.currentHeight, backgroundColor: '#FFFFFF' } : null}
+        sceneStyle={(Platform.OS === 'ios') ? { paddingTop: StatusBarSizeIOS.currentHeight, backgroundColor: '#3c3643' } : null}
       >
 
         <Scene
